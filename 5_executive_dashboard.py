@@ -9,7 +9,7 @@ import numpy as np
 # MODULE 1: ENTERPRISE UI & SIDEBAR
 # ==========================================
 st.set_page_config(
-    page_title="Carbon Shield | Executive Glass", 
+    page_title="ZeNaut Truth Engine | Executive Glass", 
     page_icon="🛡️", 
     layout="wide", 
     initial_sidebar_state="expanded"
