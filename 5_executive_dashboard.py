@@ -58,7 +58,7 @@ def load_platinum_data(file):
     else:
         # Fallback to the live production pipeline data
         try:
-            df = pd.read_csv('data_platinum/saas_financial_output.csv')
+            df = pd.read_csv('saas_financial_output.csv')
         except FileNotFoundError:
             return None
             
