@@ -14,10 +14,16 @@ st.set_page_config(
     layout="wide", 
     initial_sidebar_state="expanded"
 )
+st.info("*For the optimal executive experience, please view this dashboard on a desktop or tablet.* | *NOTICE:* This is a sandbox environment. Data shown is anonymized for demonstration purposes and not to scale.")
 
 # Custom CSS for Green Shield and Enterprise Metric Cards
 st.markdown("""
     <style>
+    /* Hide the Streamlit Main Menu, Footer, and GitHub Icon */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    [data-testid="stToolbar"] {display: none !important;}
     .metric-card {
         background-color: #1E1E1E; padding: 15px; border-radius: 8px;
         border-left: 4px solid #00E676; margin-bottom: 15px;
@@ -46,7 +52,14 @@ st.sidebar.markdown(
 
 # Instead of making it the first thing they see:
 with st.sidebar.expander("Dev Tools: Manual Override"):
-    uploaded_file = st.file_uploader("Upload SaaS CSV", type=['csv'])
+    dev_pass = st.text_input("Enter Engineering Key", type="password")
+    
+    if dev_pass == "zenaut2026": # You can change this password
+        uploaded_file = st.file_uploader("Upload SaaS CSV", type=['csv'])
+    else:
+        uploaded_file = None
+        if dev_pass: 
+            st.error("Access Denied. Unauthorized clearance.")
 
 @st.cache_data
 def load_platinum_data(file):
@@ -538,7 +551,7 @@ else:
         
         if avg_ideal < 0:
             # STOP: The revenue input doesn't even cover the physical fuel cost.
-            st.warning(f"**COMMERCIAL ALERT:** At a TCE of **${daily_charter_rate:,.0f}/day**, this vessel operates at a net loss. The baseline fuel cost alone for this specific ship averages **${avg_baseline_fuel_cost:,.0f}/day**. Please input a realistic market charter rate to unlock performance metrics.")
+            st.warning(f"*COMMERCIAL ALERT:* At a TCE of *${daily_charter_rate:,.0f}* per day, this vessel operates at a net loss. The baseline fuel cost alone for this specific ship averages *${avg_baseline_fuel_cost:,.0f}* per day. Please input a realistic market charter rate to unlock performance metrics.")
         else:
             # PROCEED: Revenue covers baseline costs, we can accurately measure performance.
             if avg_actual >= avg_ideal:
