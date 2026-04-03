@@ -557,8 +557,7 @@ else:
         
         if avg_ideal < 0:
             # STOP: The revenue input doesn't even cover the physical fuel cost.
-            st.warning(f"COMMERCIAL ALERT: Vessel operating at a net loss. The baseline fuel cost of ${avg_baseline_fuel_cost:,.0f} per day exceeds the inputted TCE of ${daily_charter_rate:,.0f} per day. Please input a realistic market rate.")
-        else:
+            st.warning(f"COMMERCIAL ALERT: Vessel operating at a net loss. The baseline fuel cost of USD {avg_baseline_fuel_cost:,.0f} per day exceeds the inputted TCE of USD {daily_charter_rate:,.0f} per day. Please input a realistic market rate.")
             # PROCEED: Revenue covers baseline costs, we can accurately measure performance.
             if avg_actual >= avg_ideal:
                 # OVERPERFORMING (Actual Profit is Higher / Loss is Smaller)
@@ -568,7 +567,7 @@ else:
                     f"+${tce_delta:,.0f}/day (+{tce_delta_pct:.1f}% Gain)", 
                     delta_color="normal"
                 )
-                st.success(f"📈 **OVERPERFORMING:** Generating **${tce_delta:,.0f}/day** more than the baseline. Highly efficient hydrodynamic state.")
+                st.success(f"**OVERPERFORMING:** Generating **${tce_delta:,.0f}/day** more than the baseline. Highly efficient hydrodynamic state.")
             else:
                 # UNDERPERFORMING (Actual Profit is Lower / Loss is Heavier)
                 loss = abs(tce_delta)
@@ -578,7 +577,7 @@ else:
                     f"-${loss:,.0f}/day (-{tce_delta_pct:.1f}% Loss)", 
                     delta_color="normal" 
                 )
-                st.error(f"📉 **UNDERPERFORMING:** Hull degradation, drag, and taxes are destroying **${loss:,.0f}/day** in commercial yield.")
+                st.error(f"**UNDERPERFORMING:** Hull degradation, drag, and taxes are destroying **${loss:,.0f}/day** in commercial yield.")
         st.markdown("---")
         
         # 2. STRICT LEGAL DESK: CHARTER PARTY PERFORMANCE
