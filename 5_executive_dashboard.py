@@ -19,11 +19,17 @@ st.info("*For the optimal executive experience, please view this dashboard on a 
 # Custom CSS for Green Shield and Enterprise Metric Cards
 st.markdown("""
     <style>
-    /* Hide the Streamlit Main Menu, Footer, and GitHub Icon */
+    /* Kill the Main Menu and Footer */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    
+    /* Kill the top header strip entirely */
+    header {visibility: hidden !important;}
+    
+    /* Aggressively hide all toolbars, GitHub links, and the Pencil Icon */
     [data-testid="stToolbar"] {display: none !important;}
+    .viewerBadge_container__1QSob {display: none !important;}
+    [data-testid="manage-app-button"] {display: none !important;}
     .metric-card {
         background-color: #1E1E1E; padding: 15px; border-radius: 8px;
         border-left: 4px solid #00E676; margin-bottom: 15px;
