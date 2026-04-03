@@ -557,7 +557,7 @@ else:
         
         if avg_ideal < 0:
             # STOP: The revenue input doesn't even cover the physical fuel cost.
-            st.warning(f"COMMERCIAL ALERT: Vessel operating at a net loss. The baseline fuel cost (${avg_baseline_fuel_cost:,.0f}/day) exceeds the inputted TCE (${daily_charter_rate:,.0f}/day). Please input a realistic market rate.")
+            st.warning(f"COMMERCIAL ALERT: Vessel operating at a net loss. The baseline fuel cost of ${avg_baseline_fuel_cost:,.0f} per day exceeds the inputted TCE of ${daily_charter_rate:,.0f} per day. Please input a realistic market rate.")
         else:
             # PROCEED: Revenue covers baseline costs, we can accurately measure performance.
             if avg_actual >= avg_ideal:
